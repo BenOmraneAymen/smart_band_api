@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Random Numbers</title>
+  </head>
+  <body>
+    <h1>Random Numbers</h1>
+    <ul>
+      <% numbers.forEach((number) => { %>
+        <li><%= number %></li>
+      <% }); %>
+    </ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      socket.on('value', (value) => {
+        // Add the new value to the list
+        const list = document.querySelector('ul');
+        const item = document.createElement('li');
+        item.textContent = value;
+        list.appendChild(item);
+      });
+    </script>
+  </body>
+</html>
